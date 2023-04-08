@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+	user informations
+{% endblock %}
+{% block body %}
+	<style>
+		h4 {
+			font-weight: bold;
+		}
+		body {
+			background-color: #D3D3D3;
+		}
+	</style>
+	<body>
+
+		<div class="container">
+			<div class="row ">
+				<h1 style=" text-align: center;color:#D2691E; ">Les informations de l'utilisateur</h1>
+				<div class="col-6 py-2">
+					<div>
+						<h4>Nom:</h4>
+						<div style="font-size: 20px ; margin-top: -15px ;">
+							{{ app.user.nom }}
+						</div>
+					</div>
+				</div>
+				<div class="col-6 py-2">
+					<div>
+						<h4>Prenom:</h4>
+						<div style="font-size: 20px ; margin-top: -15px ;">
+							{{ app.user.prenom }}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-6 py-2">
+					<div>
+						<h4>Email:</h4>
+						<div style="font-size: 20px ; margin-top: -15px ;">
+							{{ app.user.email }}
+						</div>
+					</div>
+				</div>
+				<div class="col-6">
+					<div>
+						<h4>Adresse:</h4>
+						<div style="font-size: 20px ; margin-top: -15px ;">
+							{{ app.user.address }}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row ">
+				<div class="col-6 py-2">
+					<div>
+						<h4>Phone Number:</h4>
+						<div style="font-size: 20px ; margin-top: -15px ;">
+							{{ app.user.phone }}
+						</div>
+					</div>
+				</div>
+				<div class="col-6">
+					<div>
+						<h4>You have the Role(s) of an :</h4>
+						<div style="font-size: 20px ; margin-top: -15px ;">
+							{{ app.user.roles | join(', ') }}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="mt-5">
+				<a href="{{ path('update_user_app') }}" class="btn bg-info text-white btn-block btn-lg">Changer informations</a>
+			</div>
+		</div>
+	</body>
+</div>{% endblock %}

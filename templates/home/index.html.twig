@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil
+{% endblock %}
+{% block head %}
+	<link rel="stylesheet" href="{{ asset('Css/home.css') }}">
+{% endblock %}
+
+
+{% block body %}
+	<style>
+		.scrolling {
+			width: 100%;
+			height: 55px;
+			position: relative;
+			display: block;
+
+		}
+		.scrolling h1 {
+			position: relative;
+			width: 100%;
+
+			margin: 40px;
+			padding: 0;
+			color: black;
+			font-size: 4em;
+			text-align: center;
+			line-height: 50px;
+			transform: translateX(100%);
+			animation: scrolling 10s linear infinite;
+		}
+		@keyframes scrolling {
+			0% {
+				transform: translate(120%);
+			}
+			100% {
+				transform: translate(-120%);
+			}
+		}
+		#img {
+			margin-top: ;
+		}
+		p {
+			margin: 20px;
+			font-size: 30px;
+			font-weight: 200;
+		}
+	</style>
+	<body style="background-color: #D3D3D3;">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 text-center">
+					<div class="scrolling">
+						<h1 style="color: #D2691E;">Bienvenue dans notre site</h1>
+					</div>
+					<p>Sur notre site, vous trouverez tout ce dont vous avez besoin dans le domaine informatique, avec les meilleurs prix.</p>
+				</div>
+			</div>
+			<div id="img" class="row justify-content-center">
+				<div class="col-md-8">
+					<img class="img-fluid" src="{{ asset('accueil/Mon projet.png') }}" alt="Accueil">
+				</div>
+			</div>
+		</div>
+	</body>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Produit
+{% endblock %}
+
+{% block body %}
+	<style></style>
+	<body style="background-color: #D3D3D3;">
+		<div class="container">
+			<div class="row pt-4 ">
+				{% for produit in produits %}
+					<div class="card col-4 align-items-center ">
+						<div class="">
+							<a class="" href="{{ path('product_details', {'id': produit.id}) }}">
+								<div>
+									<div class="btn btn-info m-3 ">
+										{{ produit.nom }}
+									</div>
+								</a>
+								<br>
+
+								<div>
+									Catalogue :{{ produit.catalogue.nom }}
+								</div>
+
+								<br>
+								<div>
+									prix:
+									{{ produit.prix }}
+									Dt
+								</div>
+
+								<br>
+								<div>
+									<img src="/produit/{{ produit.photo }}" class="img-fluid img-catalogue" alt="image">
+								</div>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</body>
+	</body>
+</div></body>{% endblock %}

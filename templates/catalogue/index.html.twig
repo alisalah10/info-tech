@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catalogue
+{% endblock %}
+
+{% block body %}
+	<style></style>
+	<body style="background-color:#D3D3D3;">
+		<section>
+			<div class="container">
+				<div class="row">
+					{% for item in catalogue %}
+						<div class=" card col-4 mt-5">
+							<div class=" d-flex justify-content-center">
+								<a href="{{ path('app_produit', {'catalogue': item.id}) }}" class="text-decoration-none">
+									<div style="background-color:white" class="  my-4 py-5 rounded text-center">
+										<div class="h4 text-warning">{{ item.nom }}</div>
+										<p class="mt-4">{{ item.description }}</p>
+										<img src="/catalogue/{{ item.icon }}" class="img-fluid mt-4 mb-2 img-catalogue" alt="{{ item.nom }}">
+										<button class="btn btn-dark text-white mt-3">Voir</button>
+									</div>
+								</a>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</section>
+	</body>
+{% endblock %}

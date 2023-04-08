@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+	update user informations
+{% endblock %}
+{% block body %}
+	<style>
+
+		.form-control {
+			background-color: #ADD8E6;
+			width: auto;
+		}
+		.row {
+			margin-top: 10px;
+		}
+		span {
+			font-weight: bold;
+		}
+		body {
+			background-color: #D3D3D3;
+		}
+	</style>
+	<body>
+
+
+		<div class="container">
+			<h1 style="text-align: center; margin-top: 20px; color:#D2691E;">Update User Information</h1>
+			<div class="row d-flex justify-content-center">
+				<div style="padding-left: 80px;" class="card col-8 pt-3 mb-4 ">
+					{{ form_start(form) }}
+					<div class="row  ">
+						<div class="col-6 mr-5">
+							<div>
+								<span>
+									{{ form_label(form.nom, 'Nom:' ) }}</span>
+								{{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+							</div>
+						</div>
+						<div class="col-6">
+							<div class="">
+								<span>
+									{{ form_label(form.prenom, 'Prenom:') }}</span>
+								{{ form_widget(form.prenom, {'attr': {'class': 'form-control'}}) }}
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div>
+							<span>{{ form_label(form.email, 'Email:') }}</span>
+							{{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-6">
+							<div>
+								<span>
+									{{ form_label(form.address, 'Adresse:') }}</span>
+								{{ form_widget(form.address, {'attr': {'class': 'form-control'}}) }}
+							</div>
+						</div>
+						<div class="col-6">
+							<div>
+								<span>
+									{{ form_label(form.phone, 'Téléphone:') }}</span>
+								{{ form_widget(form.phone, {'attr': {'class': 'form-control'}}) }}
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div>
+							<span>
+								{{ form_label(form.plainPassword.first, 'Nouveau mot de passe:') }}</span>
+							{{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
+						</div>
+						<div style="margin-top: 10px;">
+							<span>
+								{{ form_label(form.plainPassword.second, 'Confirmez votre nouveau mot de passe:') }}</span>
+							{{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
+						</div>
+
+						<div class="mt-5">
+							{{ form_widget(form.save, {'attr': {'class': 'btn btn-success'}}) }}
+						</div>
+						<div class="mt-3 mb-4">
+							<a href="{{ path('user_details_app') }}">Back to the User informations</a>
+						</div>
+						{{ form_end(form) }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+{% endblock %}
