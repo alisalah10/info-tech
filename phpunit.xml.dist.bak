@@ -1,0 +1,28 @@
+<!-- phpunit.xml.dist -->
+<phpunit>
+    <php>
+        <!-- Configuration spécifique à Symfony -->
+        <server name="KERNEL_CLASS" value="App\Kernel" />
+        <env name="APP_ENV" value="test" />
+        <env name="APP_DEBUG" value="1" />
+        <env name="SYMFONY_DEPRECATIONS_HELPER" value="999999" />
+        <env name="XDEBUG_MODE" value="coverage" />
+    </php>
+
+    <testsuites>
+        <testsuite name="Project Test Suite">
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
+
+    <filter>
+        <whitelist>
+            <directory>src</directory>
+            <exclude>
+                <directory>src/Kernel.php</directory>
+                <directory>src/DataFixtures</directory>
+                <!-- Ajoutez d'autres exclusions si nécessaire -->
+            </exclude>
+        </whitelist>
+    </filter>
+</phpunit>

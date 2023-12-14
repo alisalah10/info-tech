@@ -1,3 +1,7 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+cart_place_order:
+    path: /cart/place-order
+    controller: App\Controller\CartController::placeOrder
+    methods: [POST]

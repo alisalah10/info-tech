@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Livres
+{% endblock %}
+
+{% block body %}
+	<style></style>
+	<body style="background-color: #D3D3D3;">
+		<div class="container">
+			<div class="row pt-4 ">
+				{% for livre in livres %}
+					<div class="card col-4 align-items-center ">
+						<div class="">
+							<a class="" href="{{ path('livre_details', {'id': livre.id}) }}">
+								<div>
+									<div class="btn btn-primary m-3 ">
+										{{ livre.nom|capitalize }}
+									</div>
+								</a>
+								<br>
+
+								<div>
+									Auteur :{{ livre.auteur|capitalize }}
+								</div>
+
+								<br>
+								<div>
+									Prix:
+									{{ livre.prix }}
+									Dt
+								</div>
+
+								<br>
+								<div>
+									<img src="/livre/{{ livre.photo }}" class="img-fluid img-catalogue" alt="image">
+								</div>
+								<div>
+									<a href="{{ path('livre_details', {'id': livre.id}) }}" class="btn btn-info text-white mt-3" style="margin-bottom: 1em;">Voir détails</a>
+									<a href="{{ path('cart_add', {'id': livre.id}) }}" class="btn btn-success text-white mt-3" style="margin-bottom: 1em;">
+										<i class="fa-solid fa-cart-shopping"></i>Ajouter au panier</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</body>
+	</body>
+</div></body>{% endblock %}

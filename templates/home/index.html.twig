@@ -1,66 +1,436 @@
 {% extends 'base.html.twig' %}
-
 {% block title %}Accueil
-{% endblock %}
-{% block head %}
-	<link rel="stylesheet" href="{{ asset('Css/home.css') }}">
 {% endblock %}
 
 
 {% block body %}
-	<style>
-		.scrolling {
-			width: 100%;
-			height: 55px;
-			position: relative;
-			display: block;
-
-		}
-		.scrolling h1 {
-			position: relative;
-			width: 100%;
-
-			margin: 40px;
-			padding: 0;
-			color: black;
-			font-size: 4em;
-			text-align: center;
-			line-height: 50px;
-			transform: translateX(100%);
-			animation: scrolling 10s linear infinite;
-		}
-		@keyframes scrolling {
-			0% {
-				transform: translate(120%);
+	<body>
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Lato:ital, wght@0, 100;0, 300;0, 400;0, 700;0, 900;1, 100;1, 300;1, 400;1, 700;1, 900 &family=Playfair+Display:ital, wght@0, 400;0, 500;0, 600;0, 700;0, 800;0, 900;1, 400;1, 500;1, 600;1, 700;1, 800;1, 900&display=swap');:root {
+				--main-color: #8C6A58;
+				--accent-color: #FFFFFF;
+				--heading-font: 'Playfair Display', serif;
+				--content-font: 'Lato', sans-serif;
 			}
-			100% {
-				transform: translate(-120%);
+
+			* {
+				padding: 0;
+				margin: 0;
+				box-sizing: border-box;
 			}
-		}
-		#img {
-			margin-top: ;
-		}
-		p {
-			margin: 20px;
-			font-size: 30px;
-			font-weight: 200;
-		}
-	</style>
-	<body style="background-color: #D3D3D3;">
-		<div class="container">
-			<div class="row">
-				<div class="col-12 text-center">
-					<div class="scrolling">
-						<h1 style="color: #D2691E;">Bienvenue dans notre site</h1>
-					</div>
-					<p>Sur notre site, vous trouverez tout ce dont vous avez besoin dans le domaine informatique, avec les meilleurs prix.</p>
-				</div>
-			</div>
-			<div id="img" class="row justify-content-center">
-				<div class="col-md-8">
-					<img class="img-fluid" src="{{ asset('accueil/Mon projet.png') }}" alt="Accueil">
-				</div>
-			</div>
+			.container {
+				height: 100vh;
+				overflow-y: scroll;
+				scroll-behavior: smooth;
+				scroll-snap-type: y mandatory;
+			}
+
+			.line {
+				position: absolute;
+				height: 0.7em;
+				width: 100%;
+			}
+			.line::before,
+			.line::after {
+				content: '';
+				position: absolute;
+				height: 0.7em;
+				width: 10%;
+			}
+			.line::before {
+				right: 0;
+			}
+			.vertical {
+				position: absolute;
+				height: 100vh;
+				width: 0.7em;
+			}
+			.vertical::before,
+			.vertical::after {
+				content: '';
+				position: absolute;
+				width: 0.7em;
+				height: 15%;
+			}
+			.vertical::before {
+				bottom: 0;
+			}
+
+			.section {
+				display: flex;
+				align-items: center;
+				position: relative;
+				height: 100vh;
+				width: 100%;
+				background-size: cover;
+				scroll-snap-align: start;
+			}
+			.banner {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+			}
+			.cas {
+				width: 80%;
+				display: flex;
+				justify-content: space-around;
+			}
+			.ca {
+				text-align: center;
+				margin: 0 1em;
+				padding: 3%;
+			}
+			.ca img {
+				width: 20em;
+				height: 13em;
+				transition: all 0.2s ease-in-out;
+			}
+			.ca img:hover {
+				-webkit-transform: scale(1.25);
+				-moz-transform: scale(1.25);
+				transform: scale(1.25);
+			}
+			h1 {
+				font-size: 6rem;
+				font-family: var(--heading-font);
+				font-style: italic;
+				text-align: center;
+			}
+			h2 {
+				font-size: 3rem;
+				font-family: var(--heading-font);
+				font-style: italic;
+			}
+			h3 {
+				font-size: 1.5rem;
+				font-family: var(--content-font);
+				font-weight: 400;
+				text-transform: uppercase;
+				letter-spacing: 0.1em;
+				word-spacing: 0.3em;
+				text-align: center;
+			}
+			h4 {
+				font-size: 1.3rem;
+				font-family: var(--content-font);
+				font-weight: 400;
+				margin-top: 2em;
+			}
+			h4.margin-light-h4 {
+				margin-top: 0.3em;
+			}
+			a:link {
+				text-decoration: none !important;
+				color: var(--main-color);
+			}
+
+			h4.upper-h4 {
+				text-transform: uppercase;
+				font-weight: 600;
+			}
+
+			.landing {
+				background-image: url('images/landing_background.jpg');
+			}
+			.landing .banner {
+				width: 100%;
+				height: 40%;
+				background-color: var(--main-color);
+				color: var(--accent-color);
+				justify-content: space-evenly;
+			}
+			.landing .line::before,
+			.landing .line::after {
+				background-color: var(--accent-color);
+			}
+
+			.about {
+				justify-content: end;
+				background-image: url('images/about_background.jpg');
+			}
+			.about .banner {
+				height: 100vh;
+				width: 35%;
+				margin-right: 5%;
+				background-color: var(--main-color);
+				color: var(--accent-color);
+				justify-content: center;
+				text-align: center;
+				padding: 3em;
+			}
+			.about .vertical::before,
+			.about .vertical::after {
+				background-color: var(--accent-color);
+			}
+
+			.genres {
+				background-color: var(--accent-color);
+				flex-direction: column;
+				justify-content: space-around;
+				color: var(--main-color);
+			}
+			.genres .banner {
+				justify-content: center;
+			}
+			.genres .card {
+				margin-bottom: 3em;
+			}
+			.genres .line::before,
+			.genres .line::after {
+				background-color: var(--main-color);
+			}
+
+			.events {
+				background-color: var(--main-color);
+				flex-direction: column;
+				justify-content: space-around;
+				color: var(--accent-color);
+			}
+			.events .banner {
+				justify-content: center;
+			}
+			.events .line::before,
+			.events .line::after {
+				background-color: var(--accent-color);
+			}
+
+			.contact .banner {
+				background-color: var(--accent-color);
+				height: 100vh;
+				width: 50%;
+				justify-content: center;
+				text-align: center;
+				padding: 3em;
+				color: var(--main-color);
+			}
+			.contact .photo {
+				height: 100vh;
+				width: 50%;
+				background-image: url('images/contact_background.jpg');
+				background-size: cover;
+			}
+			.contact .vertical::before,
+			.contact .vertical::after {
+				background-color: var(--main-color);
+			}
+
+			@media only screen and(max-width: 767px) {
+				h1 {
+					font-size: 4rem;
+				}
+
+				.line {
+					display: none;
+				}
+				.vertical {
+					display: none;
+				}
+				.cas {
+					flex-direction: column;
+				}
+				.ca {
+					margin-bottom: 2em;
+				}
+				.ca img {
+					width: 60vw;
+					height: auto;
+				}
+
+				.section {
+					scroll-snap-align: unset;
+				}
+				.banner {
+					padding: 1em;
+				}
+
+				.about .banner {
+					width: 90%;
+					background: transparent;
+					text-shadow: 2px 2px 2px black;
+				}
+				.about h2 {
+					font-size: 3rem;
+				}
+				.about h4 {
+					font-size: 1.8rem;
+				}
+
+				.genres.section,
+				.events.section {
+					height: max-content;
+				}
+				.genres h2,
+				.events h2 {
+					margin-bottom: 1em;
+				}
+
+				.contact .banner {
+					width: 100vw;
+				}
+				.contact .photo {
+					display: none;
+				}
+			}
+
+			@media only screen and(min-width: 768px) and(max-width: 1199px) {
+				h1 {
+					font-size: 5rem;
+				}
+
+				.cas {
+					width: 700px;
+					max-width: 70vh;
+					max-height: 80vw;
+					flex-direction: column;
+					justify-content: flex-start;
+					overflow-x: hidden;
+					overflow-y: scroll;
+					transform: rotate(-90deg);
+
+					scrollbar-color: var(--main-color) var(--accent-color);
+					direction: rtl;
+				}
+				.ca {
+					transform: rotate(90deg);
+					margin: 5vh;
+					padding: 5vh;
+				}
+
+				.cas::-webkit-scrollbar {
+					width: 1em;
+				}
+				.cas::-webkit-scrollbar-track {
+					background: var(--accent-color);
+					border: 2px solid var(--main-color);
+					border-radius: 0.5em;
+				}
+				.cas::-webkit-scrollbar-thumb {
+					background: var(--main-color);
+					border-radius: 0.5em;
+				}
+
+				.events .cas {
+					scrollbar-color: var(--accent-color) var(--main-color);
+				}
+				.events .cas::-webkit-scrollbar-track {
+					background: var(--main-color);
+					border: 2px solid var(--accent-color);
+				}
+				.events .cas::-webkit-scrollbar-thumb {
+					background: var(--accent-color);
+				}
+
+				.landing .banner {
+					padding: 6em;
+				}
+
+				.about .banner {
+					width: 50%;
+				}
+			}
+
+			@media only screen and(max-height: 525px) {
+				.ca img {
+					width: 8em;
+					height: 5.2em;
+				}
+				h4 {
+					font-size: 0.8rem !important;
+					margin-top: 0.5em;
+				}
+				.vertical {
+					display: none;
+				}
+			}
+		</style>
+		<div class="landing section">
+			<section class="banner">
+				<h1>Readble</h1>
+				<h3>Bookstore and Re-Publishing House</h3>
+				<div class="line"></div>
+			</section>
+		</div>
+		<div class="about section">
+			<section class="banner">
+				<h2>Who We Are</h2>
+				<h4>Readble is an independent bookstore and re-publisher. You'll find an endless variety of wonderful books from our new and up-and-coming authors and you can publish any old book you have .</h4>
+				<div class="vertical"></div>
+			</section>
+		</div>
+		<div class="genres section">
+			<section class="banner">
+				<h2>Our Genres</h2>
+				<div class="line"></div>
+			</section>
+			<section class="cas">
+				<article class="ca">
+					<img src="images/genre-1.jpg" alt="sci-fi">
+					<h4 class="upper-h4">Sci-fi and Fantasy</h4>
+					<h4 class="margin-light-h4">Travel through mysterious and marvelous worlds</h4>
+				</article>
+				<article class="ca">
+					<img src="images/genre-2.jpg" alt="general">
+					<h4 class="upper-h4">General Fiction</h4>
+					<h4 class="margin-light-h4">Feed your imagination and escape the world for a while</h4>
+				</article>
+				<article class="ca">
+					<img src="images/genre-3.jpg" alt="nonfiction">
+					<h4 class="upper-h4">Nonfiction</h4>
+					<h4 class="margin-light-h4">Books about our beautiful and amazing world</h4>
+				</article>
+			</section>
+		</div>
+		<div class="events section">
+			<section class="banner">
+				<h2>Our Events</h2>
+				<div class="line"></div>
+			</section>
+			<section class="cas">
+				<article class="ca">
+					<img src="images/events-1.jpg" alt="author-readings">
+					<h4 class="upper-h4">Author Readings</h4>
+					<h4 class="margin-light-h4">
+						An Annual National Industry Event<br>
+						January 1, 2020, 9:00 a.m. to 5:00 p.m.<br>
+						Conference Hall A, National Event Hall
+					</h4>
+				</article>
+				<article class="ca">
+					<img src="images/events-2.jpg" alt="new-book-launch">
+					<h4 class="upper-h4">New Book Launch</h4>
+					<h4 class="margin-light-h4">
+						An Annual National Industry Event<br>
+						January 1, 2020, 9:00 a.m. to 5:00 p.m.<br>
+						Conference Hall A, National Event Hall
+					</h4>
+				</article>
+				<article class="ca">
+					<img src="images/events-3.jpg" alt="nonfiction">
+					<h4 class="upper-h4">Store Renovations</h4>
+					<h4 class="margin-light-h4">
+						An Annual National Industry Event<br>
+						January 1, 2020, 9:00 a.m. to 5:00 p.m.<br>
+						Conference Hall A, National Event Hall
+					</h4>
+				</article>
+			</section>
+		</div>
+		<div class="contact section">
+			<section class="banner">
+				<h2>Visit Our Bookstore!</h2>
+				<h4 class="upper-h4">Mailing Address</h4>
+				<h4 class="margin-light-h4">123 Anywhere St., Any City, State, Country 12345</h4>
+				<h4 class="upper-h4">Email Address</h4>
+				<h4 class="margin-light-h4">
+					<a href="readble@reallygreatsite.com">readble@reallygreatsite.com</a>
+				</h4>
+				<h4 class="upper-h4">Phone Number</h4>
+				<h4 class="margin-light-h4">
+					<a href="tel:+28323049">(28) 323 094</a>
+				</h4>
+				<div class="vertical"></div>
+			</section>
+			<section class="photo"></section>
 		</div>
 	</body>
-{% endblock %}
+</body></html>{% endblock %}

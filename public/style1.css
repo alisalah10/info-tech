@@ -1,0 +1,329 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --main-color: #8C6A58;
+    --accent-color: #FFFFFF;
+    --heading-font: 'Playfair Display', serif;
+    --content-font: 'Lato', sans-serif;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.container {
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+}
+
+.line {
+    position: absolute;
+    height: 0.7em;
+    width: 100%;
+}
+.line::before, .line::after {
+    content: '';
+    position: absolute;
+    height: 0.7em;
+    width: 10%;
+}
+.line::before {
+    right: 0;
+}
+.vertical {
+    position: absolute;
+    height: 100vh;
+    width: 0.7em;
+}
+.vertical::before, .vertical::after {
+    content: '';
+    position: absolute;
+    width: 0.7em;
+    height: 15%;
+}
+.vertical::before { 
+    bottom: 0;
+}
+
+.section {
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    background-size: cover;
+    scroll-snap-align: start;
+}
+.banner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.cards {
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+}
+.card {
+    text-align: center;
+    margin: 0 1em;
+    padding: 3%;
+}
+.card img {
+    width: 20em;
+    height: 13em;
+    transition: all 0.2s ease-in-out;
+}
+.card img:hover{
+    -webkit-transform: scale(1.25);
+    -moz-transform: scale(1.25);
+    transform: scale(1.25);
+}
+h1 {
+    font-size: 6rem;
+    font-family: var(--heading-font);
+    font-style: italic;
+    text-align: center;
+}
+h2 {
+    font-size: 3rem;
+    font-family: var(--heading-font);
+    font-style: italic;
+}
+h3 {
+    font-size: 1.5rem;
+    font-family: var(--content-font);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    word-spacing: 0.3em;
+    text-align: center;
+}
+h4 {
+    font-size: 1.3rem;
+    font-family: var(--content-font);
+    font-weight: 400;
+    margin-top: 2em;
+}
+h4.margin-light-h4 {
+    margin-top: 0.3em;
+}
+a:link{
+    text-decoration: none!important;
+    color: var(--main-color);
+}
+
+h4.upper-h4 {
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.landing {
+    background-image: url('images/landing_background.jpg');
+}
+.landing .banner {
+    width: 100%;
+    height: 40%;
+    background-color: var(--main-color);
+    color: var(--accent-color);
+    justify-content: space-evenly;
+}
+.landing .line::before, .landing .line::after {
+    background-color: var(--accent-color);
+}
+
+.about {
+    justify-content: end;
+    background-image: url('images/about_background.jpg');
+}
+.about .banner {
+    height: 100vh;
+    width: 35%;
+    margin-right: 5%;
+    background-color: var(--main-color);
+    color: var(--accent-color);
+    justify-content: center;
+    text-align: center;
+    padding: 3em;
+}
+.about .vertical::before, .about .vertical::after {
+    background-color: var(--accent-color);
+}
+
+.genres {
+    background-color: var(--accent-color);
+    flex-direction: column;
+    justify-content: space-around;
+    color: var(--main-color);
+}
+.genres .banner {
+    justify-content: center;
+}
+.genres .card {
+    margin-bottom: 3em;
+}
+.genres .line::before, .genres .line::after {
+    background-color: var(--main-color);
+}
+
+.events {
+    background-color: var(--main-color);
+    flex-direction: column;
+    justify-content: space-around;
+    color: var(--accent-color);
+}
+.events .banner {
+    justify-content: center;
+}
+.events .line::before, .events .line::after {
+    background-color: var(--accent-color);
+}
+
+.contact .banner {
+    background-color: var(--accent-color);
+    height: 100vh;
+    width: 50%;
+    justify-content: center;
+    text-align: center;
+    padding: 3em;
+    color: var(--main-color);
+}
+.contact .photo {
+    height: 100vh;
+    width: 50%;
+    background-image: url('images/contact_background.jpg');
+    background-size: cover;
+}
+.contact .vertical::before, .contact .vertical::after {
+    background-color: var(--main-color);
+}
+
+@media only screen and (max-width: 767px) {
+    h1 {
+        font-size: 4rem;
+    }
+
+    .line {
+        display: none;
+    }
+    .vertical {
+        display: none;
+    }
+    .cards {
+        flex-direction: column;
+    }
+    .card {
+        margin-bottom: 2em;
+    }
+    .card img {
+        width: 60vw;
+        height: auto;
+    }
+
+    .section {
+        scroll-snap-align: unset;
+    }
+    .banner {
+        padding: 1em;
+    }
+
+    .about .banner {
+        width: 90%;
+        background: transparent;
+        text-shadow: 2px 2px 2px black;
+    }
+    .about h2 {
+        font-size: 3rem;
+    }
+    .about h4 {
+        font-size: 1.8rem;
+    }
+
+    .genres.section, .events.section {
+        height:max-content;
+    }
+    .genres h2, .events h2 {
+        margin-bottom: 1em;
+    }
+    
+    .contact .banner {
+        width: 100vw;
+    }
+    .contact .photo {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1199px) {
+    h1 {
+        font-size: 5rem;
+    }
+
+    .cards {
+        width: 700px;
+        max-width: 70vh;
+        max-height: 80vw;
+        flex-direction: column;
+        justify-content: flex-start;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        transform: rotate(-90deg);
+
+        scrollbar-color: var(--main-color) var(--accent-color);
+        direction: rtl;
+    }
+    .card {
+        transform: rotate(90deg);
+        margin: 5vh;
+        padding: 5vh;
+    }
+
+    .cards::-webkit-scrollbar {
+        width: 1em;
+    }
+    .cards::-webkit-scrollbar-track {
+        background: var(--accent-color);
+        border: 2px solid var(--main-color);
+        border-radius: 0.5em;
+    }
+    .cards::-webkit-scrollbar-thumb {
+        background: var(--main-color);
+        border-radius: 0.5em;
+    }
+
+    .events .cards {
+        scrollbar-color: var(--accent-color) var(--main-color);
+    }
+    .events .cards::-webkit-scrollbar-track {
+        background: var(--main-color);
+        border: 2px solid var(--accent-color);
+    }
+    .events .cards::-webkit-scrollbar-thumb {
+        background: var(--accent-color);
+    }
+
+    .landing .banner {
+        padding: 6em;
+    }
+
+    .about .banner {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-height: 525px) {
+    .card img {
+        width: 8em;
+        height: 5.2em;
+    }
+    h4 {
+        font-size: 0.8rem !important;
+        margin-top: 0.5em;
+    }
+    .vertical {
+        display: none;
+    }
+}

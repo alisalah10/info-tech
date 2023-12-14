@@ -1,0 +1,519 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ livre.nom }}
+	- Livre Details
+{% endblock %}
+
+{% block body %}
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet">
+	<style>
+
+		.pd-detail__policy-list {
+			margin: 0;
+			padding-left: 26px;
+			font-size: 14px;
+			list-style: none;
+		}
+
+		.pd-detail__policy-list > li i {
+			color: #009444;
+		}
+
+		.pd-detail__policy-list > li span {
+			color: #7f7f7f;
+		}
+		.pd-detail__name {
+			display: block;
+			color: #333333;
+			font-size: 16px;
+			font-weight: 600;
+		}
+
+		@media(max-width: 575px) {
+			.pd-detail-inline-2 {
+				display: block;
+			}
+			.pd-detail-inline-2 div {
+				display: block;
+				margin-right: 0;
+			}
+			.rev-f1__group {
+				display: block;
+			}
+		}
+
+		.pd-detail__inline span {
+			margin-right: 0.375rem;
+		}
+		.pd-detail__inline span:last-child {
+			margin-right: 0;
+		}
+
+		.pd-detail__price {
+			color: #ff4500;
+			font-size: 2rem;
+			font-weight: 700;
+		}
+
+		.pd-detail__stock {
+			background-color: rgba(0, 148, 68, 0.14);
+			color: #009444;
+		}
+
+		.pd-detail__left {
+			background-color: rgba(255, 69, 0, 0.14);
+			color: #ff4500;
+		}
+
+		.pd-detail__preview-desc {
+			font-size: 13px;
+			color: #7f7f7f;
+		}
+
+		.pd-detail__click-wrap > a {
+			font-size: 13px;
+			color: #a0a0a0;
+			transition: color 110ms ease-in-out;
+		}
+		.pd-detail__click-wrap > a:hover {
+			color: #b6b6b6;
+			text-decoration: underline;
+		}
+
+		.pd-detail__click-count {
+			font-size: 10px;
+			color: #a0a0a0;
+		}
+
+		.s-fb--color-hover:hover {
+			color: #4267b2;
+		}
+
+		.s-tw--color-hover:hover {
+			color: #38A1F3;
+		}
+
+		.s-wa--color-hover:hover {
+			color: #25d366;
+		}
+
+		.s-gplus--color-hover:hover {
+			color: #dd4b39;
+		}
+
+		.pd-detail__form {
+			width: 100%;
+		}
+
+
+		.pd-detail-inline-2 {
+			display: -ms-flexbox;
+			display: flex;
+			-ms-flex-wrap: nowrap;
+			flex-wrap: nowrap;
+			-ms-flex-align: center;
+			align-items: center;
+		}
+		.pd-detail-inline-2 div {
+			margin-right: 14px;
+		}
+		.pd-detail-inline-2 div:last-child {
+			margin-right: 0;
+		}
+
+		.input-counter {
+			position: relative;
+			display: inline-block;
+			max-width: 132px;
+			min-width: 132px;
+		}
+
+		.input-counter__text {
+			border-radius: 25px;
+			display: block;
+			width: 100%;
+			height: 50px;
+			font-size: 14px;
+			font-weight: 600;
+			text-align: center;
+		}
+		.input-counter__text:focus {
+			outline: 0;
+		}
+		.input-counter--text-primary-style {
+			color: #333333;
+			transition: all 0.6s linear;
+			border: 2px solid transparent;
+			background-color: #f1f1f1;
+		}
+		.input-counter--text-primary-style:focus {
+			background-color: transparent;
+			border-color: #ff003b;
+		}
+		.pd-detail__del {
+			color: #a0a0a0;
+			font-size: 12px;
+		}
+		.pd-detail__label {
+			display: block;
+			font-size: 14px;
+			font-weight: 700;
+			color: #333333;
+		}
+
+		.pd-detail__rating {
+			display: block;
+		}
+
+		.pd-detail__rating i {
+			font-size: 12px;
+		}
+
+		.pd-detail__review > a {
+			font-size: 12px;
+			transition: color 110ms ease-in-out;
+			color: #333333;
+		}
+
+		.pd-detail__review>a:hover {
+			color: #ff003b;
+			text-decoration: underline;
+		}
+
+		.pd-detail__stock,
+		.pd-detail__left {
+			font-size: 12px;
+			font-weight: 600;
+			padding: 8px;
+			display: inline-block;
+			border-radius: 30px;
+		}
+
+		.pd-detail__preview-desc {
+			font-size: 13px;
+			color: #7f7f7f;
+		}
+
+		.pd-detail__form .btn {
+			padding: 1rem 3rem;
+			border-radius: 0.375rem;
+		}
+
+		.pd-detail__color,
+		.pd-detail__size {
+			display: -ms-flexbox;
+			display: flex;
+			-ms-flex-wrap: wrap;
+			flex-wrap: wrap;
+		}
+		.pd-social-list {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			display: -ms-flexbox;
+			display: flex;
+			-ms-flex-wrap: wrap;
+			flex-wrap: wrap;
+		}
+
+		.pd-social-list > li {
+			margin-right: 16px;
+		}
+
+		.pd-social-list>li:last-child {
+			margin-right: 0;
+		}
+
+		.pd-social-list > li > a {
+			font-size: 1.125rem;
+			transition: color 110ms ease-in-out;
+			color: #333333;
+		}
+
+		.s-insta--color-hover:hover {
+			color: #f77737;
+		}
+
+		/* Facebook */
+
+		.s-fb--bgcolor-hover:hover {
+			background-color: #4267b2;
+		}
+
+		.s-fb--color {
+			color: #4267b2;
+		}
+
+
+		/* Twitter */
+
+		.s-tw--bgcolor-hover:hover {
+			background-color: #38A1F3;
+		}
+
+		.s-tw--color {
+			color: #38A1F3;
+		}
+
+
+		/* instagram */
+
+		.s-insta--bgcolor-hover:hover {
+			background-color: #f77737;
+		}
+
+		.s-insta--color {
+			color: #f77737;
+		}
+
+		/* linkedin */
+
+		.s-linked--bgcolor-hover:hover {
+			background-color: #0077B5;
+		}
+
+		.s-linked--color-hover:hover {
+			color: #0077B5;
+		}
+
+		.s-linked--color {
+			color: #0077B5;
+		}
+
+
+		/* googleplus */
+
+		.s-gplus--bgcolor-hover:hover {
+			background-color: #dd4b39;
+		}
+
+		.s-gplus--color {
+			color: #dd4b39;
+		}
+
+
+		/* Whats App */
+
+		.s-wa--color {
+			color: #25d366;
+		}
+
+		.input-counter__minus,
+		.input-counter__plus {
+			top: 0;
+			display: inline-block;
+			font-size: 10px;
+			cursor: pointer;
+			position: absolute;
+			width: 50px;
+			line-height: 50px;
+			height: 100%;
+			text-align: center;
+			color: #7f7f7f;
+			transition: color 0.5s;
+		}
+
+		.input-counter__minus:hover,
+		.input-counter__plus:hover {
+			color: #333333;
+		}
+
+		.input-counter__minus {
+			left: 0;
+		}
+
+		.input-counter__plus {
+			right: 0;
+		}
+		.btn--e-brand:hover {
+			background-color: #fa003a;
+		}
+
+		.btn--e-brand-b-2 {
+			color: #ffffff;
+			background-color: #ff4500;
+			border: 2px solid #ff4500;
+			transition: background-color 0.5s transition: background-color 0.5s ease-in, border-color 0.5s ease-in;
+		}
+
+		.btn--e-brand-b-3 {
+			color: #ffffff;
+			background-color: #5cb85c;
+			border: 2px solid #5cb85c;
+			transition: background-color 0.5s transition: background-color 0.5s ease-in, border-color 0.5s ease-in;
+		}
+
+		.btn--e-brand-b-2:hover {
+			background-color: #ff4500;
+			border-color: #ff4500;
+		}
+
+		.btn--e-brand-b-3:hover {
+			background-color: #5cb85c;
+			border-color: #5cb85c;
+		}
+		.pd {
+			cursor: pointer;
+		}
+
+		.pd-wrap {
+			position: relative;
+		}
+
+		.pd-text {
+			position: absolute;
+			top: 15px;
+			padding: 8px;
+			right: 15px;
+			font-size: 12px;
+			color: #333333;
+		}
+
+		.slider-fouc {
+			display: none;
+		}
+
+		.u-img-fluid {
+			width: 100%;
+			max-width: 100%;
+			height: auto;
+		}
+	</style>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-5">
+				<div class="pd u-s-m-b-30">
+					<div class="pd-wrap">
+						<div id="js-product-detail-modal">
+							<div>
+
+								<img class="u-img-fluid" src="/livre/{{ livre.photo }}" class="img-fluid img-catalogue" alt="livre">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div
+				class="col-lg-7">
+				<!--====== Product Right Side Details ======-->
+				<div class="pd-detail">
+					<div>
+						<span class="pd-detail__name">{{ livre.nom|capitalize }}</span>
+					</div>
+					<div>
+						<div class="pd-detail__inline">
+							<span class="pd-detail__price">Prix :
+								{{ livre.prix }}
+								TDN</span>
+						</div>
+						<div class="u-s-m-b-15">
+							<div class="pd-detail__rating gl-rating-style">
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star-half-alt"></i>
+								<span class="pd-detail__review u-s-m-l-4">
+									<a data-click-scroll="#view-review">Reviews</a>
+								</span>
+							</div>
+						</div>
+						<div class="u-s-m-b-15">
+							<div class="pd-detail__inline">
+								<span class="pd-detail__stock">{{ livre.quantite }}
+									in stock</span>
+							</div>
+						</div>
+						<div class="u-s-m-b-15">
+							<span class="pd-detail__preview-desc">Description :
+								<br>{{ livre.description }}</span><br>Auteur :
+							<span class="pd-detail__preview-desc">
+								<br>{{ livre.auteur }}</span><br>Type :
+							<span class="pd-detail__preview-desc">
+								<br>{{ livre.type }}</span><br>Date d'édition:
+							<span class="pd-detail__preview-desc">
+								<br>{{ livre.dateEdition|date('j F Y') }}</span><br>
+
+						</div>
+						<div class="u-s-m-b-15">
+							<div class="pd-detail__inline">
+								<span class="pd-detail__click-wrap">
+									<i class="far fa-heart u-s-m-r-6"></i>
+									<a href="#">Add to Wishlist</a>
+									<span class="pd-detail__click-count"></span>
+								</span>
+							</div>
+						</div>
+						<div class="u-s-m-b-15">
+							<div class="pd-detail__inline">
+								<span class="pd-detail__click-wrap">
+									<i class="far fa-envelope u-s-m-r-6"></i>
+									<a href="#">Email me When the price drops</a>
+									<span class="pd-detail__click-count"></span>
+								</span>
+							</div>
+						</div>
+						<div class="u-s-m-b-15">
+							<ul class="pd-social-list">
+								<li>
+									<a class="s-fb--color-hover" href="#">
+										<i class="fab fa-facebook-f"></i>
+									</a>
+								</li>
+								<li>
+									<a class="s-tw--color-hover" href="#">
+										<i class="fab fa-twitter"></i>
+									</a>
+								</li>
+								<li>
+									<a class="s-insta--color-hover" href="#">
+										<i class="fab fa-instagram"></i>
+									</a>
+								</li>
+								<li>
+									<a class="s-wa--color-hover" href="#">
+										<i class="fab fa-whatsapp"></i>
+									</a>
+								</li>
+								<li>
+									<a class="s-gplus--color-hover" href="#">
+										<i class="fab fa-google-plus-g"></i>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="u-s-m-b-15">
+							<form class="pd-detail__form">
+								<div class="pd-detail-inline-2">
+									<div class="u-s-m-b-15">
+
+
+										<a href="{{ path('cart_add', {'id': livre.id}) }}" class="btn btn--e-brand-b-2">Ajouter au panier</a>
+										<a href="{{ path('app_livre') }}" class="btn btn--e-brand-b-3">Retour à la Liste des Livres</a>
+									</div>
+								</div>
+							</form>
+						</div>
+						<br>
+						<div class="u-s-m-b-15">
+							<span class="pd-detail__label u-s-m-b-8">Product Policy:</span>
+							<ul class="pd-detail__policy-list">
+								<li>
+									<i class="fas fa-check-circle u-s-m-r-8"></i>
+									<span>Buyer Protection.</span>
+								</li>
+								<li>
+									<i class="fas fa-check-circle u-s-m-r-8"></i>
+									<span>Full Refund if you don't receive your order.</span>
+								</li>
+								<li>
+									<i class="fas fa-check-circle u-s-m-r-8"></i>
+									<span>Returns accepted if product not as described.</span>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		{% endblock %}

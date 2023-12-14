@@ -1,0 +1,57 @@
+{# templates/livres_ajoutes/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<body style="background-color: #D3D3D3;">
+		<div class="container">
+			<h1>Livres ajoutés</h1>
+
+			{% if livres is empty %}
+				<p>Aucun livre ajouté.</p>
+			{% else %}
+				<div class="row pt-4 ">
+					{% for livre in livres %}
+						<div class="card col-4 align-items-center ">
+							<div class="">
+								<a class="" href="{{ path('livre_details', {'id': livre.id}) }}">
+									<div>
+										<div class="btn btn-primary m-3 ">
+											{{ livre.nom|capitalize }}
+										</div>
+									</a>
+									<br>
+
+									<div>
+										Auteur :{{ livre.auteur|capitalize }}
+									</div>
+
+									<br>
+									<div>
+										Prix:
+										{{ livre.prix }}
+										Dt
+									</div>
+
+									<br>
+									<div>
+										<img src="/livre/{{ livre.photo }}" class="img-fluid img-catalogue" alt="image">
+									</div>
+									<div>
+										<a href="{{ path('livre_details', {'id': livre.id}) }}" class="btn btn-info text-white mt-3" style="margin-bottom: 1em;">Voir détails</a>
+										<a href="{{ path('livres_ajoutes_modifier', { 'id': livre.id }) }}" class="btn btn-success text-white mt-3" style="margin-bottom: 1em;">Modifier</a>
+										<a href="{{ path('livres_ajoutes_supprimer', { 'id': livre.id }) }}" class="btn btn-danger text-white mt-3" style="margin-bottom: 1em;">Supprimer</a>
+
+									</div>
+								</div>
+							</div>
+						</div>
+
+					{% endfor %}
+					
+				{% endif %}
+				<div>
+						<a href="{{ path('app_book_add') }}" class="btn btn-primary text-white mt-3" style="margin-bottom: 1em;">Ajouter un nouveau livre</a>
+
+					</div>
+			{% endblock %}

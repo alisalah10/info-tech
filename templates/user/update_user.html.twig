@@ -5,88 +5,130 @@
 {% block body %}
 	<style>
 
-		.form-control {
-			background-color: #ADD8E6;
-			width: auto;
-		}
-		.row {
-			margin-top: 10px;
-		}
-		span {
-			font-weight: bold;
-		}
 		body {
-			background-color: #D3D3D3;
+			background: rgb(99, 39, 120)
+		}
+
+		.form-control:focus {
+			box-shadow: none;
+			border-color: #BA68C8
+		}
+
+		.profile-button {
+			background: rgb(99, 39, 120);
+			box-shadow: none;
+			border: none
+		}
+
+		.profile-button:hover {
+			background: #682773
+		}
+
+		.profile-button:focus {
+			background: #682773;
+			box-shadow: none
+		}
+
+		.profile-button:active {
+			background: #682773;
+			box-shadow: none
+		}
+
+		.back:hover {
+			color: #682773;
+			cursor: pointer
+		}
+
+		.labels {
+			font-size: 11px
+		}
+
+		.add-experience:hover {
+			background: #BA68C8;
+			color: #fff;
+			cursor: pointer;
+			border: solid 1px #BA68C8
 		}
 	</style>
 	<body>
 
 
 		<div class="container">
-			<h1 style="text-align: center; margin-top: 20px; color:#D2691E;">Update User Information</h1>
-			<div class="row d-flex justify-content-center">
-				<div style="padding-left: 80px;" class="card col-8 pt-3 mb-4 ">
-					{{ form_start(form) }}
-					<div class="row  ">
-						<div class="col-6 mr-5">
-							<div>
-								<span>
-									{{ form_label(form.nom, 'Nom:' ) }}</span>
-								{{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
-							</div>
-						</div>
-						<div class="col-6">
-							<div class="">
-								<span>
-									{{ form_label(form.prenom, 'Prenom:') }}</span>
-								{{ form_widget(form.prenom, {'attr': {'class': 'form-control'}}) }}
-							</div>
+			<div class="container rounded bg-white mt-5 mb-5">
+				<div class="row">
+					<div class="col-md-3 border-right">
+						<div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold">{{ app.user.nom }}</span>
+							<span class="text-black-50">{{ app.user.email }}</span>
+							<span></span>
 						</div>
 					</div>
-					<div class="row">
-						<div>
-							<span>{{ form_label(form.email, 'Email:') }}</span>
-							{{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-6">
-							<div>
-								<span>
-									{{ form_label(form.address, 'Adresse:') }}</span>
-								{{ form_widget(form.address, {'attr': {'class': 'form-control'}}) }}
+					<div class="col-md-5 border-right">
+						<div class="p-3 py-5">
+							<div class="d-flex justify-content-between align-items-center mb-3">
+								<h4 class="text-right">Changer Vos Informations
+								</h4>
 							</div>
-						</div>
-						<div class="col-6">
-							<div>
-								<span>
-									{{ form_label(form.phone, 'Téléphone:') }}</span>
-								{{ form_widget(form.phone, {'attr': {'class': 'form-control'}}) }}
+							{{ form_start(form) }}
+							<div class="row  ">
+								<div class="col-6 mr-5">
+									<div>
+										<span>
+											{{ form_label(form.nom, 'Nom:' ) }}</span>
+										{{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+									</div>
+								</div>
+								<div class="col-6">
+									<div class="">
+										<span>
+											{{ form_label(form.prenom, 'Prenom:') }}</span>
+										{{ form_widget(form.prenom, {'attr': {'class': 'form-control'}}) }}
+									</div>
+								</div>
 							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div>
-							<span>
-								{{ form_label(form.plainPassword.first, 'Nouveau mot de passe:') }}</span>
-							{{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
-						</div>
-						<div style="margin-top: 10px;">
-							<span>
-								{{ form_label(form.plainPassword.second, 'Confirmez votre nouveau mot de passe:') }}</span>
-							{{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
-						</div>
+							<div class="row">
+								<div>
+									<span>{{ form_label(form.email, 'Email:') }}</span>
+									{{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-6">
+									<div>
+										<span>
+											{{ form_label(form.address, 'Adresse:') }}</span>
+										{{ form_widget(form.address, {'attr': {'class': 'form-control'}}) }}
+									</div>
+								</div>
+								<div class="col-6">
+									<div>
+										<span>
+											{{ form_label(form.phone, 'Téléphone:') }}</span>
+										{{ form_widget(form.phone, {'attr': {'class': 'form-control'}}) }}
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div>
+									<span>
+										{{ form_label(form.plainPassword.first, 'Nouveau mot de passe:') }}</span>
+									{{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
+								</div>
+								<div style="margin-top: 10px;">
+									<span>
+										{{ form_label(form.plainPassword.second, 'Confirmez votre nouveau mot de passe:') }}</span>
+									{{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
+								</div>
 
-						<div class="mt-5">
-							{{ form_widget(form.save, {'attr': {'class': 'btn btn-success'}}) }}
+								<div class="mt-5 text-center">
+									<button class="btn btn-primary profile-button" type="submit">Save Profile</button>
+									<a href="{{ path('user_details_app') }}" class="btn btn-primary ">Retour</a>
+								</div>
+							</div>
 						</div>
-						<div class="mt-3 mb-4">
-							<a href="{{ path('user_details_app') }}">Back to the User informations</a>
-						</div>
-						{{ form_end(form) }}
 					</div>
 				</div>
 			</div>
 		</div>
+		{{ form_end(form) }}
 	</body>
 {% endblock %}

@@ -2,9 +2,10 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Commande;
 use App\Entity\User;
-use App\Entity\Catalogue;
-use App\Entity\Produit;
+
+use App\Entity\Livre;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -19,9 +20,9 @@ class DashboardController extends AbstractDashboardController
     public function index(): Response
     {
         $user = $this->getUser();
-        if (!in_array('ROLE_ADMIN', $user->getRoles())) {
+        /* if (!in_array('ROLE_ADMIN', $user->getRoles())) {
             return $this->redirectToRoute('app_home');
-        }
+        }*/
 
         $routeBuilder = $this->get(AdminUrlGenerator::class);
 
@@ -55,14 +56,14 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('Info-Tech');
+            ->setTitle('Readble');
     }
 
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::linkToCrud('catalogue', 'fas fa-list', Catalogue::class);
-        yield MenuItem::linkToCrud('produit', 'fas fa-list', Produit::class);
         yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-user', User::class);
+        yield MenuItem::linkToCrud('Livres', 'fas fa-list', Livre::class);
+        yield MenuItem::linkToCrud('Commande', 'fas fa-shopping-cart', Commande::class);
     }
 }
